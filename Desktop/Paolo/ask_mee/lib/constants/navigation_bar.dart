@@ -1,5 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:ask_mee/screens/home_screen/home_screen.dart';
+import 'package:ask_mee/screens/notification_screen/notifications_screen.dart';
+import 'package:ask_mee/screens/search_screen/search_screen.dart';
 import 'package:ask_mee/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,8 @@ class _NavigationBarState extends State<NavigationBar> {
 
   final List<Widget> _screens = [
     HomeScreen(),
+    SearchScreen(),
+    NotificationScreen(),
     UserScreen(),
   ];
 
@@ -127,7 +131,7 @@ class _NavigationBarState extends State<NavigationBar> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/postscreen');
         },
         child: Icon(
           Icons.add,

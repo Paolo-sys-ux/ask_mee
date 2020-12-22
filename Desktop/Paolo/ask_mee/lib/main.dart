@@ -1,10 +1,19 @@
 import 'package:ask_mee/constants/navigation_bar.dart';
+import 'package:ask_mee/screens/bloc/check_user/check_user_bloc.dart';
+import 'package:ask_mee/screens/bloc/create/create_bloc.dart';
+import 'package:ask_mee/screens/bloc/display_post/display_post_bloc.dart';
 import 'package:ask_mee/screens/bloc/email_login/email_login_bloc.dart';
 import 'package:ask_mee/screens/bloc/facebook/facebook_bloc.dart';
 import 'package:ask_mee/screens/bloc/google/google_bloc.dart';
+import 'package:ask_mee/screens/bloc/profile_picture/profile_picture_bloc.dart';
 import 'package:ask_mee/screens/bloc/signup/signup_bloc.dart';
+import 'package:ask_mee/screens/bloc/upload_image/upload_image_bloc.dart';
+import 'package:ask_mee/screens/edit_profile_screen/edit_profile_screen.dart';
 import 'package:ask_mee/screens/home_screen/home_screen.dart';
 import 'package:ask_mee/screens/login_screen/login_screen.dart';
+import 'package:ask_mee/screens/notification_screen/notifications_screen.dart';
+import 'package:ask_mee/screens/post_screen/post_screen.dart';
+import 'package:ask_mee/screens/search_screen/search_screen.dart';
 import 'package:ask_mee/screens/signup_screen/signup_screen.dart';
 import 'package:ask_mee/screens/user_screen/user_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,15 +44,34 @@ class MyApp extends StatelessWidget {
         BlocProvider<EmailLoginBloc>(
           create: (BuildContext context) => EmailLoginBloc(),
         ),
+        BlocProvider<CheckUserBloc>(
+          create: (BuildContext context) => CheckUserBloc(),
+        ),
+        BlocProvider<CreateBloc>(
+          create: (BuildContext context) => CreateBloc(),
+        ),
+        BlocProvider<UploadImageBloc>(
+          create: (BuildContext context) => UploadImageBloc(),
+        ),
+        BlocProvider<DisplayPostBloc>(
+          create: (BuildContext context) => DisplayPostBloc(),
+        ),
+        BlocProvider<ProfilePictureBloc>(
+          create: (BuildContext context) => ProfilePictureBloc(),
+        ),
       ],
       child: MaterialApp(
         initialRoute: '/',
         routes: {
           '/homescreen': (context) => HomeScreen(),
+          '/searchscreen': (context) => SearchScreen(),
+          '/notificationscreen': (context) => NotificationScreen(),
           '/userscreen': (context) => UserScreen(),
           '/navigationbar': (context) => NavigationBar(),
           '/signupscreen': (context) => SignupScreen(),
           '/loginscreen': (context) => LoginScreen(),
+          '/postscreen': (context) => PostScreen(),
+          '/editprofilescreen': (context) => EditProfileScreen(),
         },
         builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
@@ -64,7 +92,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: LoginScreen(),
+        home: NavigationBar(),
       ),
     );
   }

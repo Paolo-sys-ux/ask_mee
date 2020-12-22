@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -30,11 +31,22 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         final newUser = await _auth.createUserWithEmailAndPassword(
             email: event.email, password: event.password);
 
+        var user = _auth.currentUser;
+        var uid = user.uid;
+
         final usersRef = FirebaseFirestore.instance.collection('users');
-        await usersRef.doc().set({
-          "email": event.email,
-          "password": event.password,
-          "user_status": 1
+        await usersRef
+            .doc(uid)
+            .set({"uid": uid, "email": event.email, "acct_name": 'email'});
+
+        //fcm
+        final firestoreToken = FirebaseFirestore.instance;
+        final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+        _firebaseMessaging.getToken().then((token) {
+          firestoreToken
+              .collection('tokens')
+              .doc(uid)
+              .set({'token': token, 'uid': uid});
         });
 
         if (newUser != null) {

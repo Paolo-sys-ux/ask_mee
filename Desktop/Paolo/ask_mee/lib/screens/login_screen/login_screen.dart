@@ -1,7 +1,9 @@
 import 'package:ask_mee/constants/styles.dart';
+import 'package:ask_mee/screens/bloc/check_user/check_user_bloc.dart';
 import 'package:ask_mee/screens/bloc/email_login/email_login_bloc.dart';
 import 'package:ask_mee/screens/bloc/facebook/facebook_bloc.dart';
 import 'package:ask_mee/screens/bloc/google/google_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -31,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CheckUserBloc>(context).add(Check(context: context));
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -53,7 +56,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocBuilder<FacebookBloc, FacebookState>(
                       builder: (context, state) {
                         if (state is FacebookLoading) {
-                          return CircularProgressIndicator();
+                          return SpinKitFadingCircle(
+                            color: Colors.grey,
+                            size: 50.0,
+                          );
                         } else if (state is FacebookDone) {
                           return SizedBox.shrink();
                         } else if (state is FacebookError) {
@@ -65,7 +71,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocBuilder<GoogleBloc, GoogleState>(
                       builder: (context, state) {
                         if (state is GoogleLoading) {
-                          return CircularProgressIndicator();
+                          return SpinKitFadingCircle(
+                            color: Colors.grey,
+                            size: 50.0,
+                          );
                         } else if (state is GoogleError) {
                           return Text('Error Signin Google');
                         }
