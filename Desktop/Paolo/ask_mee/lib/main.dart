@@ -2,9 +2,14 @@ import 'package:ask_mee/constants/navigation_bar.dart';
 import 'package:ask_mee/screens/bloc/check_user/check_user_bloc.dart';
 import 'package:ask_mee/screens/bloc/create/create_bloc.dart';
 import 'package:ask_mee/screens/bloc/display_post/display_post_bloc.dart';
+import 'package:ask_mee/screens/bloc/edit_profile/edit_profile_bloc.dart';
 import 'package:ask_mee/screens/bloc/email_login/email_login_bloc.dart';
 import 'package:ask_mee/screens/bloc/facebook/facebook_bloc.dart';
+import 'package:ask_mee/screens/bloc/getAnswer/getanswer_bloc.dart';
+import 'package:ask_mee/screens/bloc/getUserData/getuserdata_bloc.dart';
+import 'package:ask_mee/screens/bloc/getUserPost/getuserpost_bloc.dart';
 import 'package:ask_mee/screens/bloc/google/google_bloc.dart';
+import 'package:ask_mee/screens/bloc/postAnswer/postanswer_bloc.dart';
 import 'package:ask_mee/screens/bloc/profile_picture/profile_picture_bloc.dart';
 import 'package:ask_mee/screens/bloc/signup/signup_bloc.dart';
 import 'package:ask_mee/screens/bloc/upload_image/upload_image_bloc.dart';
@@ -58,6 +63,21 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProfilePictureBloc>(
           create: (BuildContext context) => ProfilePictureBloc(),
+        ),
+        BlocProvider<EditProfileBloc>(
+          create: (BuildContext context) => EditProfileBloc(),
+        ),
+        BlocProvider<GetuserdataBloc>(
+          create: (BuildContext context) => GetuserdataBloc(),
+        ),
+        BlocProvider<GetuserpostBloc>(
+          create: (BuildContext context) => GetuserpostBloc(),
+        ),
+        BlocProvider<PostanswerBloc>(
+          create: (BuildContext context) => PostanswerBloc(),
+        ),
+        BlocProvider<GetanswerBloc>(
+          create: (BuildContext context) => GetanswerBloc(),
         ),
       ],
       child: MaterialApp(

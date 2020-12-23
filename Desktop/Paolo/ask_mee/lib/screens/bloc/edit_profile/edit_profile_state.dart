@@ -5,8 +5,16 @@ abstract class EditProfileState {}
 
 class EditProfileInitial extends EditProfileState {}
 
-class EditProfileLoading extends EditProfileState {
-  final String loadingMessage;
+class EditProfileLoading extends EditProfileState {}
 
-  EditProfileLoading(this.loadingMessage);
+class EditProfileDone extends EditProfileState {
+  final String doneMessage;
+
+  EditProfileDone({this.doneMessage});
+}
+
+class EditProfileError extends EditProfileState {
+  final String errorMessage;
+
+  EditProfileError({this.errorMessage});
 }

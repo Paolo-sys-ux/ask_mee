@@ -135,7 +135,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text('Title: '),
+                                          Text('Topic: '),
                                           Text(
                                             "${state.post[index]["title"]}",
                                             style:
@@ -151,7 +151,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text('Author: '),
+                                          Text('Sender: '),
                                           Text(
                                             "${state.post[index]["author"]}",
                                             style:
@@ -175,7 +175,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 color: Colors.grey,
                                               ),
                                             ),
-                                            Text('Content: '),
+                                            Text('Question: '),
                                             Text(
                                               // "${state.post[index]["body"]}",
                                               "${state.post[index]["body"]}",

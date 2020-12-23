@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text('Title: '),
+                                      Text('Topic: '),
                                       Text(
                                         "${state.post[index]["title"]}",
                                         style: TextStyle(color: Colors.black),
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text('Author: '),
+                                      Text('Sender: '),
                                       Text(
                                         "${state.post[index]["author"]}",
                                         style: TextStyle(color: Colors.black),
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: Colors.grey,
                                           ),
                                         ),
-                                        Text('Content: '),
+                                        Text('Question: '),
                                         Text(
                                           // "${state.post[index]["body"]}",
                                           "${state.post[index]["body"]}",

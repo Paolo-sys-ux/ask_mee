@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,12 +33,19 @@ class CreateBloc extends Bloc<CreateEvent, CreateState> {
         var user = _auth.currentUser;
         var uid = user.uid;
 
+        Random random = new Random();
+        int randomNumber = random.nextInt(999999999);
+
+        //getting post id
+
         await postRef.doc().set({
           "title": event.title,
           "body": event.body,
           "author": event.author,
-          "uid": uid
+          "uid": uid,
+          "postId": randomNumber,
         });
+
         yield CreateSubmit(submitMessage: 'Ask Already Posted');
       } catch (e) {
         print(e);
