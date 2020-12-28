@@ -1,6 +1,7 @@
 import 'package:ask_mee/constants/navigation_bar.dart';
 import 'package:ask_mee/screens/bloc/check_user/check_user_bloc.dart';
 import 'package:ask_mee/screens/bloc/create/create_bloc.dart';
+import 'package:ask_mee/screens/bloc/deletePost/deletepost_bloc.dart';
 import 'package:ask_mee/screens/bloc/display_post/display_post_bloc.dart';
 import 'package:ask_mee/screens/bloc/edit_profile/edit_profile_bloc.dart';
 import 'package:ask_mee/screens/bloc/email_login/email_login_bloc.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<GetanswerBloc>(
           create: (BuildContext context) => GetanswerBloc(),
         ),
+        BlocProvider<DeletepostBloc>(
+          create: (BuildContext context) => DeletepostBloc(),
+        ),
       ],
       child: MaterialApp(
         initialRoute: '/',
@@ -112,7 +116,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: NavigationBar(),
+        home: LoginScreen(),
       ),
     );
   }

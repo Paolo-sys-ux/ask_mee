@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ask_mee/constants/styles.dart';
+import 'package:ask_mee/screens/bloc/deletePost/deletepost_bloc.dart';
 import 'package:ask_mee/screens/bloc/display_post/display_post_bloc.dart';
 import 'package:ask_mee/screens/bloc/getUserPost/getuserpost_bloc.dart';
 import 'package:ask_mee/screens/bloc/profile_picture/profile_picture_bloc.dart';
@@ -355,6 +356,19 @@ class _UserScreenState extends State<UserScreen> {
             ),
 
             //List of ask
+            BlocBuilder<DeletepostBloc, DeletepostState>(
+              builder: (context, state) {
+                if (state is DeleteLoading) {
+                  SpinKitFadingCircle(
+                    color: Colors.grey,
+                    size: 50.0,
+                  );
+                } else if (state is DeleteDone) {
+                } else if (state is DeleteError) {}
+                return Text('');
+              },
+            ),
+
             BlocBuilder<GetuserpostBloc, GetuserpostState>(
               builder: (context, state) {
                 if (state is GetuserpostLoading) {
@@ -420,6 +434,18 @@ class _UserScreenState extends State<UserScreen> {
                                       ],
                                     ),
                                   ),
+                                  trailing: IconButton(
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                      onPressed: () {
+                                        uid = (state.post[index].id);
+                                        print(uid);
+                                        BlocProvider.of<DeletepostBloc>(context)
+                                            .add(Delete(
+                                                uid: uid, context: context));
+                                      }),
                                   subtitle: Container(
                                     child: Column(
                                       children: [

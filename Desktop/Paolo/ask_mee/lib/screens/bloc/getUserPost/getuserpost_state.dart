@@ -23,3 +23,23 @@ class GetuserpostError extends GetuserpostState {
 
   GetuserpostError({this.errorMessage});
 }
+
+//delete state
+class DeleteLoading extends GetuserpostState {
+  final String loadingMessage;
+  final List deleteBlog;
+
+  DeleteLoading({this.deleteBlog, this.loadingMessage});
+}
+
+class DeleteDone extends GetuserpostState {
+  final String doneMessage;
+
+  DeleteDone({this.doneMessage});
+}
+
+class DeleteError extends GetuserpostState {
+  final String errorMessage;
+
+  DeleteError({this.errorMessage});
+}

@@ -53,7 +53,7 @@ class _PostScreenState extends State<PostScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Expanded(
+        child: Container(
           child: Form(
             key: _formKey,
             child: Padding(
@@ -175,7 +175,8 @@ class _PostScreenState extends State<PostScreen> {
                                                 .add(Submit(
                                                     title: title,
                                                     body: body,
-                                                    author: author));
+                                                    author: author,
+                                                    context: context));
                                             dispose();
                                           }
                                         },
@@ -225,8 +226,8 @@ class _PostScreenState extends State<PostScreen> {
                                 height: 10,
                               ),
                               InkWell(
-                                onTap: () => Navigator.pushNamed(
-                                    context, '/personalscreen'),
+                                onTap: () =>
+                                    Navigator.pushNamed(context, '/userscreen'),
                                 child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(

@@ -23,8 +23,9 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
   var answer;
 
   final _formKey = GlobalKey<FormState>();
+
   final form = FormGroup({
-    'bodyCont': FormControl(validators: [Validators.required]),
+    'body': FormControl(validators: [Validators.required]),
   });
 
   void disposed() {
@@ -63,7 +64,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                   var postId = (state.post[0]['postId']);
 
                   return SingleChildScrollView(
-                    key: _formKey,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Container(
@@ -201,6 +201,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                             ),
                             SizedBox(height: 20),
                             Column(
+                              key: _formKey,
                               children: [
                                 TextFormField(
                                   controller: bodyCont,
@@ -241,7 +242,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                                             body: body,
                                             postId: postId,
                                             context: context));
-
                                     disposed();
                                   },
                                   child: Container(
@@ -263,38 +263,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                                         ),
                                       )),
                                 ),
-
-                                //
-                                SizedBox(height: 20),
-                                InkWell(
-                                  onTap: () {
-                                    BlocProvider.of<PostanswerBloc>(context)
-                                        .add(PostAnswer(
-                                            body: body,
-                                            postId: postId,
-                                            context: context));
-
-                                    disposed();
-                                  },
-                                  child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Text(
-                                          'Get answer',
-                                          textAlign: TextAlign.center,
-                                          style: kTextButton.copyWith(
-                                              color: Colors.white,
-                                              fontSize: 22),
-                                        ),
-                                      )),
-                                )
                               ],
                             ),
                           ],

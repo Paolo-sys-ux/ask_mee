@@ -39,6 +39,30 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
             .doc(uid)
             .set({"uid": uid, "email": event.email, "acct_name": 'email'});
 
+        //create default photo
+        await FirebaseFirestore.instance
+            .collection("profile_photo")
+            .doc(uid)
+            .set({
+          "url":
+              'https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg',
+          "name": 'Anonymous',
+          "uid": uid
+        });
+
+        //updating null value
+        final usersRef2 = FirebaseFirestore.instance.collection('users');
+        final userProRef =
+            FirebaseFirestore.instance.collection('profile_photo');
+
+        await usersRef2
+            .doc(uid)
+            .update({"username": 'Anonymous', "fullname": null, "bio": null});
+
+        await userProRef
+            .doc(uid)
+            .update({"username": 'Anonymous', "fullname": null, "bio": null});
+
         //fcm
         final firestoreToken = FirebaseFirestore.instance;
         final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();

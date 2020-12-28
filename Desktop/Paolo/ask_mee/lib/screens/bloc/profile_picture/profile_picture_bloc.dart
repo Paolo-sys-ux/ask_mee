@@ -37,7 +37,9 @@ class ProfilePictureBloc
         });
 
         yield ProfilePictureFetch(profile: snapshot.docs);
-      } catch (e) {}
+      } catch (e) {
+        print(e.toString());
+      }
     }
   }
 }

@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:ask_mee/screens/bloc/display_post/display_post_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'create_event.dart';
@@ -47,6 +50,8 @@ class CreateBloc extends Bloc<CreateEvent, CreateState> {
         });
 
         yield CreateSubmit(submitMessage: 'Ask Already Posted');
+
+        Navigator.popAndPushNamed(event.context, '/navigationbar');
       } catch (e) {
         print(e);
         yield CreateError(errorMessage: e.toString());
